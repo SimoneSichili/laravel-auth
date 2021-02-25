@@ -10,7 +10,7 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $post->title }}</h5>
                       <h6 class="card-subtitle mb-2 text-muted">{{ $post->user->name }}</h6>
-                      <p class="card-text">{{ substr($post->text, 0 , 300) }}</p>
+                      <p class="card-text">{{ substr($post->text, 0 , 250) . "..." }}</p>
                       <a href="{{ route('post', $post->id) }}" class="btn btn-primary">Leggi</a>
                     </div>
                 </div>
