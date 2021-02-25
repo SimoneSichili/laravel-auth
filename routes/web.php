@@ -20,3 +20,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// route accesso libero con i posts
+Route::get('posts', 'PostController@index')->name('posts');
+
+//routes accesso privato
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::resource('posts', 'PostController');
+});
