@@ -24,6 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 // route accesso libero con i posts
 Route::get('posts', 'PostController@index')->name('posts');
 
+// route accesso libero con il singolo posts
+Route::get('post/{id}', 'PostController@show')->name('post');
+
 //routes accesso privato
 Route::prefix('admin')
     ->namespace('Admin')

@@ -12,4 +12,11 @@ class PostController extends Controller
         $posts = Post::all();
         return view('guests.index', compact('posts'));
     }
+
+    public function show($id)
+    {
+        $post = Post::where('id', $id)->first();
+        // dd($post);
+        return view('guests.show', compact('post'));
+    }
 }
