@@ -50,6 +50,9 @@
                             @endif
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.posts.index') }}">I tuoi post</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.posts.create') }}">Crea nuovo post</a>
                             </li>
                             <li class="nav-item dropdown">

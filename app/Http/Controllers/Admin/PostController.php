@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('user_id', Auth::id())->get();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -74,9 +74,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        // dd($post);
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -86,9 +87,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+
+        $request->validate(
+            [
+                'title' => 'required|max:100',
+                'text' => 'required',
+            ]
+        );
+
+        $post->update($data);
+
+        return redirect()->route('admin.posts.index')->with("message", "Post aggiornato correttamente");
     }
 
     /**

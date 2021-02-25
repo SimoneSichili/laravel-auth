@@ -8,6 +8,7 @@
     <table class="table table-striped table-bordered my-5">
         <thead>
             <tr>
+                <td>ID</td>
                 <td>Titolo</td>
                 <td>Autore</td>
                 <td>Testo</td>
@@ -19,6 +20,7 @@
         <tbody>
             @foreach ($posts as $post)
             <tr>
+                <td>{{ $post->id }}</td>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->user->name }}</td>
                 <td>{{ substr($post->text, 0 , 250) . "..." }}</td>
