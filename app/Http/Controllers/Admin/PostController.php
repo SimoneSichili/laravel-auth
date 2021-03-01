@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 //mail
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PostMail;
+// storage
+use Illuminate\Support\Facades\Storage;
 //post
 use App\Post;
 
@@ -52,9 +54,16 @@ class PostController extends Controller
                 'text' => 'required',
             ]
         );
+
+        // dd($data);
+        
         // creazione
         $newPost = new Post();
         // valorizzazione e salvataggio
+        if(!empty($data["img_path"])) {
+            $data["img_path"] = Storage::disk('public')->put('images', $data["img_path"]);
+        }
+
         $newPost->fill($data)->save();
 
         // invio email

@@ -12,6 +12,7 @@
                 <td>Titolo</td>
                 <td>Autore</td>
                 <td>Testo</td>
+                <td>Immagine</td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -24,6 +25,7 @@
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->user->name }}</td>
                 <td>{{ substr($post->text, 0 , 250) . "..." }}</td>
+                <td><img src="{{ asset('storage/' . $post->img_path) }}" alt="{{ $post->title }}" style="width: 100px"></td>
                 <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary"><i
                             class="fas fa-search-plus"></i></a>
                 </td>
