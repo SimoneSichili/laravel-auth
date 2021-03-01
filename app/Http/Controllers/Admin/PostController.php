@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+//mail
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PostMail;
+//post
 use App\Post;
 
 class PostController extends Controller
@@ -52,6 +56,9 @@ class PostController extends Controller
         $newPost = new Post();
         // valorizzazione e salvataggio
         $newPost->fill($data)->save();
+
+        // invio email
+        Mail::to('donald@email.com')->send(new PostMail($newPost));
 
         return redirect()->route('admin.posts.index')->with("message", "Post creato correttamente");
     }
